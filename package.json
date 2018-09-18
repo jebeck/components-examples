@@ -1,0 +1,30 @@
+{
+  "name": "components-examples",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Example server for my talk 'better living through components'",
+  "main": "index.js",
+  "scripts": {
+    "dev": "micro-dev -p 5000",
+    "start": "micro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jebeck/components-examples.git"
+  },
+  "author": "Jana E. Beck",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jebeck/components-examples/issues"
+  },
+  "homepage": "https://github.com/jebeck/components-examples#readme",
+  "dependencies": {
+    "micro": "^9.3.3",
+    "micro-cors": "^0.1.0",
+    "mongodb": "^3.1.6",
+    "qs": "^6.5.2"
+  },
+  "devDependencies": {
+    "micro-dev": "^3.0.0"
+  }
+}
