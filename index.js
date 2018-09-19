@@ -20,20 +20,22 @@ async function getMongoClient() {
         console.log("Connected to Mongo!")
         return client.db("components-examples")
       })
-      .catch(err => {
-        console.error(err)
-      })
+      .catch(err => err)
     return db
   }
 }
 
 const handler = async (req, res) => {
-  const parsed = await json(req)
   const { table } = qs.parse(req.url.split("?")[1])
 
   const mongoDb = await getMongoClient()
 
+  if (mongoDb instanceof Error) {
+    throw mongoDb
+  }
+
   if (req.method === "POST") {
+    const parsed = await json(req)
     mongoDb
       .collection(table)
       .insertOne(parsed, { forceServerObjectId: true })
@@ -45,7 +47,7 @@ const handler = async (req, res) => {
     mongoDb
       .collection(table)
       .find({})
-      .limit(JSON.parse(req.headers.query).limit || 0)
+      .limit(req.headers.query ? JSON.parse(req.headers.query).limit : 0)
       .toArray()
       .then(docs => send(res, 200, docs))
       .catch(err => {
