@@ -47,7 +47,11 @@ const handler = async (req, res) => {
     mongoDb
       .collection(table)
       .find({})
-      .limit(req.headers.query ? JSON.parse(req.headers.query).limit : 0)
+      .limit(
+        req.headers.query !== undefined
+          ? JSON.parse(req.headers.query).limit || 0
+          : 0
+      )
       .toArray()
       .then(docs => send(res, 200, docs))
       .catch(err => {
