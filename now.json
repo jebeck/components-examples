@@ -1,10 +1,7 @@
 {
-  "version": 2,
-  "name": "components-examples",
-  "builds": [
-    {
-      "src": "*.js",
-      "use": "@now/node-server"
-    }
-  ]
+  "version": 1,
+  "env": {
+    "DB_USER": "@mlab_db_user",
+    "DB_PWD": "@mlab_db_pwd"
+  }
 }
